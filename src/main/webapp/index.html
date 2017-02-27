@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gantt</title>
+
+
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="javascript/jquery.min.js"></script>
+<script type='text/javascript' src="http://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+<script type='text/javascript' src="http://cdn.jsdelivr.net/angular.moment/latest/angular-moment.min.js"></script>
+<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/moment-range/2.1.0/moment-range.min.js"></script>
+
+<script type='text/javascript' src="http://rawgit.com/JimLiu/angular-ui-tree/master/dist/angular-ui-tree.js"></script>
+<link rel="stylesheet" type="text/css" href="http://rawgit.com/angular-ui-tree/angular-ui-tree/master/dist/angular-ui-tree.min.css">
+
+<script type='text/javascript' src="http://rawgit.com/ganarajpr/angular-dragdrop/master/draganddrop.js"></script>
+
+<script type='text/javascript' src="http://rawgit.com/marcj/css-element-queries/master/src/ElementQueries.js"></script>
+<script type='text/javascript' src="http://rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css">
+<link rel="stylesheet" href="css/chat.css" />
+
+<script type='text/javascript' src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.js"></script>
+<script type='text/javascript' src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.css">
+<script src="javascript/atmosphere.js"></script>
+<script src="javascript/angular-atmosphere-service.js"></script>
+<script src="javascript/application.js"></script>
+</head>
+
+<body>
+	<div data-ng-app="angular.atmosphere.chat"
+		data-ng-controller="angularGanttCtrl">
+		<div gantt data="data" api="registerApi">
+			<gantt-movable></gantt-movable>
+		</div>
+	</div>
+</body>
+</html>

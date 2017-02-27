@@ -1,0 +1,13 @@
+.time {
+  color: lightgray;
+}
+
+.author {
+  font-weight: bold;
+}
+
+.gantt-row-milestone {
+    font-weight: bold;
+    vertical-align: middle;
+    color: white;
+}
