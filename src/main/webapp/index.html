@@ -6,43 +6,90 @@
 <title>Gantt</title>
 
 
-<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script type='text/javascript'
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="javascript/jquery.min.js"></script>
-<script type='text/javascript' src="http://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
-<script type='text/javascript' src="http://cdn.jsdelivr.net/angular.moment/latest/angular-moment.min.js"></script>
-<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/moment-range/2.1.0/moment-range.min.js"></script>
+<script type='text/javascript'
+	src="http://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+<script type='text/javascript'
+	src="http://cdn.jsdelivr.net/angular.moment/latest/angular-moment.min.js"></script>
+<script type='text/javascript'
+	src="http://cdnjs.cloudflare.com/ajax/libs/moment-range/2.1.0/moment-range.min.js"></script>
 
 
-<script type='text/javascript' src="http://rawgit.com/JimLiu/angular-ui-tree/master/dist/angular-ui-tree.js"></script>
-<link rel="stylesheet" type="text/css" href="http://rawgit.com/angular-ui-tree/angular-ui-tree/master/dist/angular-ui-tree.min.css">
+<script type='text/javascript'
+	src="http://rawgit.com/JimLiu/angular-ui-tree/master/dist/angular-ui-tree.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="http://rawgit.com/angular-ui-tree/angular-ui-tree/master/dist/angular-ui-tree.min.css">
 
-<script type='text/javascript' src="http://rawgit.com/ganarajpr/angular-dragdrop/master/draganddrop.js"></script>
+<script type='text/javascript'
+	src="http://rawgit.com/ganarajpr/angular-dragdrop/master/draganddrop.js"></script>
 
-<script type='text/javascript' src="http://rawgit.com/marcj/css-element-queries/master/src/ElementQueries.js"></script>
-<script type='text/javascript' src="http://rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
+<script type='text/javascript'
+	src="http://rawgit.com/marcj/css-element-queries/master/src/ElementQueries.js"></script>
+<script type='text/javascript'
+	src="http://rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
 
-<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css">
 <link rel="stylesheet" href="css/chat.css" />
 
-<script type='text/javascript' src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.js"></script>
-<script type='text/javascript' src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.css">
+<script type='text/javascript'
+	src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.js"></script>
+<script type='text/javascript'
+	src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.css">
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.css">
 <script src="javascript/atmosphere.js"></script>
 <script src="javascript/angular-atmosphere-service.js"></script>
 <script src="javascript/application.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cgross.github.io/angular-notify/dist/angular-notify.css">
-<script type='text/javascript' src="https://cgross.github.io/angular-notify/dist/angular-notify.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cgross.github.io/angular-notify/dist/angular-notify.css">
+<script type='text/javascript'
+	src="https://cgross.github.io/angular-notify/dist/angular-notify.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script
+	src="https://rawgit.com/legalthings/angular-signature/master/src/signature.js"></script>
 </head>
 
-<body>
+<body onbeforeunload="ConfirmClose()" onunload="HandleOnClose()">
 	<div data-ng-app="ganttUpdate"
-		data-ng-controller="angularGanttCtrl">
+		data-ng-controller="angularGanttCtrl as m">
 		<div gantt data="data" api="registerApi">
 			<gantt-movable></gantt-movable>
 		</div>
+		<em>{{updateData()}}</em>
+		<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
+		<button ng-click="save()" ng-disabled="disableSave">Save</button>
+		<div class="container"
+			ng-style="{'max-width': boundingBox.width + 'px', 'max-height': boundingBox.height + 'px'}">
+			<signature-pad accept="accept" clear="clear" height="220" width="568"
+				dataurl="dataurl"></signature-pad>
+
+			<div class="buttons">
+				<button ng-click="clear()">Clear</button>
+				<button ng-click="dataurl = signature.dataUrl"
+					ng-disabled="!signature">Reset</button>
+				<button ng-click="signature = accept()">Sign</button>
+				<button ng-click="check()">Check</button>
+			</div>
+			
+		</div>
+
+		<div class="result" ng-show="signature">
+			{{ signature.dataUrl }} <img ng-src="{{ signature.dataUrl }}">
+		</div>
 	</div>
+
 </body>
+
 </html>
