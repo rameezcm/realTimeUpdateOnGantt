@@ -1,10 +1,17 @@
 var app = angular.module("ganttUpdate", ['angular.atmosphere', 'gantt',
-  'gantt.table', 'gantt.movable', 'cgNotify', 'signature'
+  'gantt.table', 'gantt.movable', 'cgNotify', 'signature', 'ui.grid',
+  'ui.grid.edit',
+  'ui.grid.cellNav',
+  'ui.grid.moveColumns',
+  'ui.grid.resizeColumns',
+  'ui.grid.exporter'
 ]);
 
 app.controller('angularGanttCtrl', ChatController);
 
-app.factory("LS", function($window, $rootScope) {
+
+
+/*app.factory("LS", function($window, $rootScope) {
 	
   angular.element($window).on(
     'storage',
@@ -23,9 +30,94 @@ app.factory("LS", function($window, $rootScope) {
       return $window.localStorage && $window.localStorage.getItem(key);
     }
   };
-});
+});*/
 
-function ChatController($scope, atmosphereService, notify, LS) {
+function ChatController($scope, $http, atmosphereService, notify/*, LS*/) {
+	
+	$scope.nonEditableFields = ["firstName"] ;
+	$scope.data = [{
+	    "firstName": "Cox",
+	    "lastName": "Carney",
+	    "company": "Enormo",
+	    "employed": true,
+	    "isReadOnly": true
+	  }, {
+	    "firstName": "Lorraine",
+	    "lastName": "Wise",
+	    "company": "Comveyer",
+	    "employed": false,
+	    "isReadOnly": false
+	  }, {
+	    "firstName": "Nancy",
+	    "lastName": "Waters",
+	    "company": "Fuelton",
+	    "employed": false,
+	    "isReadOnly": false
+	  }];
+
+
+	  $scope.gridOptions = {
+	   // data: 'data',
+	    enableCellEdit: true,
+	    enableGridMenu: true,
+	    enableSelectAll: true,
+	    exporterCsvFilename: 'myFile.xls',
+	    exporterPdfDefaultStyle: {fontSize: 9},
+	    exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+	    exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
+	    exporterPdfHeader: { text: "Grid Data", style: 'headerStyle' },
+	    exporterPdfFooter: function ( currentPage, pageCount ) {
+	      return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+	    },
+	    exporterPdfCustomFormatter: function ( docDefinition ) {
+	      docDefinition.styles.headerStyle = { fontSize: 22, bold: true };
+	      docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+	      return docDefinition;
+	    },
+	    exporterPdfOrientation: 'portrait',
+	    exporterPdfPageSize: 'LETTER',
+	    exporterPdfMaxGridWidth: 500,
+	    exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
+	    /*columnDefs: [
+	        { field: 'name' },
+	        { field: 'gender', visible: true},
+	        { field: 'company' }
+	      ],*/
+	    
+	    /*columnDefs: [{
+	      name: 'firstName',
+	      cellEditableCondition: function($scope) {
+	    	if($scope.nonEditableFields.contains(firstName) > -1) {
+	    		return false ;
+	    	}
+	        return true;
+	      }
+	    }, {
+	      name: 'lastName',
+	      cellEditableCondition: function($scope) {
+	        return true;
+	      }
+	    }, {
+	      name: 'company',
+	      cellEditableCondition: function($scope) {
+	        return true;
+	      }
+	    }, ]*/
+	  };
+	  //$scope.gridOptions.data = $scope.data ;
+	  $scope.gridOptions.onRegisterApi = function(gridApi) {
+	    $scope.gridApi = gridApi;
+	  };
+
+	  $scope.hideColumns = function() {
+	    $scope.gridOptions.columnDefs[0].visible = false;
+	    $scope.gridApi.grid.refresh();
+	  }
+
+	  $scope.showColumns = function() {
+	    $scope.gridOptions.columnDefs[0].visible = true;
+	    $scope.gridApi.grid.refresh();
+	  }
 	
   $scope.boundingBox = {
     width: 700,
@@ -42,25 +134,34 @@ function ChatController($scope, atmosphereService, notify, LS) {
 
     return "Unsaved Data on Gantt";
   };
-  $scope.updateData = function() {
+  
+  $http.get('http://ui-grid.info/data/100.json')
+  .success(function(data) {
+    $scope.gridOptions.data = data;
+  });
+  /*$scope.updateData = function() {
     $scope.disableEdit = JSON.parse(LS.getData("disableEdit"));
     $scope.disableSave = JSON.parse(LS.getData("disableSave"));
   };
 
   LS.setData("disableEdit", false);
-  LS.setData("disableSave", false);
+  LS.setData("disableSave", false);*/
 
-  $scope.disableEdit = JSON.parse(LS.getData("disableEdit"));
-  $scope.disableSave = JSON.parse(LS.getData("disableSave"));
+  $scope.disableEdit = false;
+  $scope.disableSave = false;
   $scope.edit = function() {
-    LS.setData("disableEdit", true);
-    LS.setData("disableSave", false);
+   // LS.setData("disableEdit", true);
+   // LS.setData("disableSave", false);
+	  $scope.disableEdit = true;
+	  $scope.disableSave = false;
   }
 
   $scope.save = function() {
     console.log("Save operation");
-    LS.setData("disableEdit", false);
-    LS.setData("disableSave", false);
+    //LS.setData("disableEdit", false);
+    //LS.setData("disableSave", false);
+      $scope.disableEdit = false;
+	  $scope.disableSave = false;
   }
 
 

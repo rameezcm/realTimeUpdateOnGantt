@@ -55,22 +55,34 @@
 	src="https://cgross.github.io/angular-notify/dist/angular-notify.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script> -->
 <script
 	src="https://rawgit.com/legalthings/angular-signature/master/src/signature.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
+<script
+	src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+
+<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+
 </head>
 
 <body onbeforeunload="ConfirmClose()" onunload="HandleOnClose()">
 	<div data-ng-app="ganttUpdate"
 		data-ng-controller="angularGanttCtrl as m">
 		<div gantt data="data" api="registerApi">
-			<gantt-movable></gantt-movable>
+			<gantt-movable enabled="disableEdit"></gantt-movable>
 		</div>
-		<em>{{updateData()}}</em>
+		<!-- <em>{{updateData()}}</em> -->
 		<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
 		<button ng-click="save()" ng-disabled="disableSave">Save</button>
-		<div class="container"
+
+		<!-- Signature Component -->
+		<!-- <div class="container"
 			ng-style="{'max-width': boundingBox.width + 'px', 'max-height': boundingBox.height + 'px'}">
 			<signature-pad accept="accept" clear="clear" height="220" width="568"
 				dataurl="dataurl"></signature-pad>
@@ -82,12 +94,22 @@
 				<button ng-click="signature = accept()">Sign</button>
 				<button ng-click="check()">Check</button>
 			</div>
-			
+
 		</div>
 
 		<div class="result" ng-show="signature">
-			{{ signature.dataUrl }} <img ng-src="{{ signature.dataUrl }}">
-		</div>
+			<img ng-src="{{ signature.dataUrl }}">
+		</div> -->
+
+		<button ng-click="hideColumns()">Hide Colum First Name</button>
+		<button ng-click="showColumns()">Show Colum First Name</button>
+
+
+		<br /> <br />
+
+		<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
+			ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter  class="grid"></div>
+
 	</div>
 
 </body>
