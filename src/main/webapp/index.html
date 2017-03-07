@@ -57,8 +57,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script> -->
-<script
-	src="javascript/signature/signature.js"></script>
+<script src="javascript/signature/signature.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
@@ -88,14 +87,15 @@
 		data-ng-controller="angularGanttCtrl as m">
 		<div id="exTab3">
 			<ul class="nav nav-pills">
-				<li ><a href="#1b" data-toggle="tab">Gantt
-						Chart</a></li>
+				<li class="active"><a href="#4b" data-toggle="tab">Gally</a></li>
+				<li><a href="#1b" data-toggle="tab">Gantt Chart</a></li>
 				<li><a href="#2b" data-toggle="tab">Signature</a></li>
 				<li><a href="#3b" data-toggle="tab">Grid</a></li>
-				<li class="active"><a href="#4b" data-toggle="tab">Gally</a></li>
 			</ul>
 
 			<div class="tab-content clearfix">
+
+				<!------------------------------------------------------------ Gantt Component ---------------------------------------------------------------->
 				<div class="tab-pane" id="1b">
 					<div gantt data="data" api="registerApi">
 						<gantt-movable enabled="disableEdit"></gantt-movable>
@@ -104,12 +104,13 @@
 					<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
 					<button ng-click="save()" ng-disabled="disableSave">Save</button>
 				</div>
+
+				<!-------------------------------------------------------------- Signature Component ------------------------------------------------------->
 				<div class="tab-pane" id="2b">
 					<!-- Signature Component -->
 					<div class="container">
 						<signature-pad accept="accept" clear="clear" height="220"
 							width="568" dataurl="dataurl"></signature-pad>
-
 						<div class="buttons">
 							<button ng-click="clear()">Clear</button>
 							<button ng-click="dataurl = signature.dataUrl"
@@ -117,33 +118,28 @@
 							<button ng-click="signature = accept()">Sign</button>
 							<button ng-click="check()">Check</button>
 						</div>
-
 					</div>
-
 					<div class="result" ng-show="signature">
 						<img ng-src="{{ signature.dataUrl }}">
 					</div>
 				</div>
+
+
+				<!-------------------------------------------------------------- UI-Grid Component ------------------------------------------------------->
 				<div class="tab-pane" id="3b">
 					<button ng-click="hideColumns()">Hide Colum First Name</button>
 					<button ng-click="showColumns()">Show Colum First Name</button>
-
-
+					<button ng-click="disableFirstName()">Disable First Name</button>
 					<br /> <br />
-
 					<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
 						ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter
 						class="grid"></div>
 				</div>
+
+				<!--------------------------------------------------------------Gally Sample Component ------------------------------------------------------->
 				<div class="tab-pane active" id="4b">
-					 <div class="my-drawing">
-					 <script>
-					
-					</script>
-					 
-					 </div>
-					 <button ng-click="reply_click()">Get Gally Data</button>
-					
+					<div class="my-drawing"></div>
+					<button ng-click="reply_click()">Get Gally Data</button>
 				</div>
 			</div>
 		</div>

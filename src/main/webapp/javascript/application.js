@@ -6,7 +6,8 @@ var app = angular.module("ganttUpdate", [ 'angular.atmosphere', 'gantt',
 app.controller('angularGanttCtrl', ChatController);
 
 function ChatController($scope, $http, atmosphereService, notify) {
-
+	
+	/*******************************************************************Gally Sample Component****************************************************************/
 	angular.element(document).ready(
 			function() {
 				var lc = LC.init(
@@ -31,6 +32,7 @@ function ChatController($scope, $http, atmosphereService, notify) {
 		alert(localStorage.getItem($scope.localStorageKey));
 	}
 	
+	/*******************************************************************UI-Grid Component****************************************************************/
 	$scope.nonEditableFields = [ "firstName" ];
 	$scope.data = [ {
 		"firstName" : "Cox",
@@ -134,8 +136,25 @@ function ChatController($scope, $http, atmosphereService, notify) {
 
 	$scope.showColumns = function() {
 		$scope.gridOptions.columnDefs[0].visible = true;
+		$scope.gridOptions.columnDefs[0].cellEditableCondition = function($scope) {
+		    return false;
+		 };
 		$scope.gridApi.grid.refresh();
 	}
+	
+	$scope.disableFirstName = function() {
+		
+		$scope.gridOptions.columnDefs[0].cellEditableCondition = function($scope) {
+		    return false;
+		 };
+		$scope.gridApi.grid.refresh();
+	}
+	
+	$http.get('http://ui-grid.info/data/100.json').success(function(data) {
+		$scope.gridOptions.data = data;
+	});
+	
+	/*******************************************************************Signature Component****************************************************************/
 
 	$scope.boundingBox = {
 		width : 700,
@@ -147,6 +166,9 @@ function ChatController($scope, $http, atmosphereService, notify) {
 		var signature = $scope.accept();
 		//alert(signature);
 	};
+	
+	
+	/*******************************************************************Window Close Event****************************************************************/
 
 	var isOnIOS = navigator.userAgent.match(/iPad/i)
 			|| navigator.userAgent.match(/iPhone/i);
@@ -160,9 +182,7 @@ function ChatController($scope, $http, atmosphereService, notify) {
 		event.returnValue = 'Unsaved Data on Gantt';
 	}
 
-	$http.get('http://ui-grid.info/data/100.json').success(function(data) {
-		$scope.gridOptions.data = data;
-	});
+	/*******************************************************************Gantt Component ****************************************************************/
 
 	$scope.disableEdit = false;
 	$scope.disableSave = false;
@@ -471,6 +491,8 @@ function ChatController($scope, $http, atmosphereService, notify) {
 			return func(eventName, data);
 		};
 	}
+	
+	/*******************************************************************Athmoshphere Component ****************************************************************/
 
 	var socket;
 
