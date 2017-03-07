@@ -76,7 +76,45 @@
 <script src="https://ololoepepe.me/files/literallycanvas.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://ololoepepe.me/files/literallycanvas.css">
-
+<!-- <link rel="stylesheet" id="validate-engine-css-css"
+	href="https://mdbootstrap.com/wp-content/plugins/wysija-newsletters/css/validationEngine.jquery.css?ver=2.7.7"
+	type="text/css" media="all">
+<link rel="stylesheet" id="ajax-auth-style-css"
+	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/ajax-auth-style.css?ver=4.7.3"
+	type="text/css" media="all">
+<link rel="stylesheet" id="brandflow-wp-css"
+	href="https://mdbootstrap.com/wp-content/plugins/brandflow-wp/public/css/brandflow-wp-public.css?ver=1.0.0"
+	type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css"
+	href="https://mdbootstrap.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.6.1"
+	type="text/css" media="all">
+<link rel="stylesheet" id="cookie-consent-style-css"
+	href="https://mdbootstrap.com/wp-content/plugins/uk-cookie-consent/assets/css/style.css?ver=4.7.3"
+	type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce-layout-css"
+	href="https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=2.6.9"
+	type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce-smallscreen-css"
+	href="https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=2.6.9"
+	type="text/css" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" id="woocommerce-general-css"
+	href="https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=2.6.9"
+	type="text/css" media="all">
+<link rel="stylesheet" id="wsl-widget-css"
+	href="https://mdbootstrap.com/wp-content/plugins/wordpress-social-login/assets/css/style.css?ver=4.7.3"
+	type="text/css" media="all">
+<link rel="stylesheet" id="compiled.css-css"
+	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.7.3"
+	type="text/css" media="all">
+<link rel="stylesheet" id="style.css-css"
+	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.7.3"
+	type="text/css" media="all"> -->
+<link rel="stylesheet" id="compiled.css-css"
+	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.7.3"
+	type="text/css" media="all">
+<link rel="stylesheet" id="style.css-css"
+	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.7.3"
+	type="text/css" media="all">
 
 
 
@@ -86,62 +124,75 @@
 	<div data-ng-app="ganttUpdate"
 		data-ng-controller="angularGanttCtrl as m">
 		<div id="exTab3">
-			<ul class="nav nav-pills">
-				<li class="active"><a href="#4b" data-toggle="tab">Gally</a></li>
-				<li><a href="#1b" data-toggle="tab">Gantt Chart</a></li>
-				<li><a href="#2b" data-toggle="tab">Signature</a></li>
-				<li><a href="#3b" data-toggle="tab">Grid</a></li>
-			</ul>
+			<div class="tabs-wrapper">
+				<ul class="nav nav-tabs tabs-3 indigo" role="tablist">
+					<li class="nav-item"><a href="#4b"
+						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+							class="glyphicon glyphicon-th-list"></span> Galley</a></li>
+					<li class="nav-item"><a href="#1b"
+						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+							class="glyphicon glyphicon-plane"></span> Gantt Chart</a></li>
+					<li class="nav-item"><a href="#2b"
+						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+							class="glyphicon glyphicon-pencil"></span> Signature</a></li>
+					<li class="nav-item"><a href="#3b"
+						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+							class="glyphicon glyphicon-th"></span> Grid</a></li>
+				</ul>
 
-			<div class="tab-content clearfix">
 
-				<!------------------------------------------------------------ Gantt Component ---------------------------------------------------------------->
-				<div class="tab-pane" id="1b">
-					<div gantt data="data" api="registerApi">
-						<gantt-movable enabled="disableEdit"></gantt-movable>
+				<div class="tab-content card">
+
+					<!------------------------------------------------------------ Gantt Component ---------------------------------------------------------------->
+					<div class=" nav nav-tabs tab-pane fade" id="1b" role="tabpanel">
+						<div gantt data="data" api="registerApi">
+							<gantt-movable enabled="disableEdit"></gantt-movable>
+						</div>
+						<!-- <em>{{updateData()}}</em> -->
+						<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
+						<button ng-click="save()" ng-disabled="disableSave">Save</button>
 					</div>
-					<!-- <em>{{updateData()}}</em> -->
-					<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
-					<button ng-click="save()" ng-disabled="disableSave">Save</button>
-				</div>
 
-				<!-------------------------------------------------------------- Signature Component ------------------------------------------------------->
-				<div class="tab-pane" id="2b">
-					<!-- Signature Component -->
-					<div class="container">
-						<signature-pad accept="accept" clear="clear" height="220"
-							width="568" dataurl="dataurl"></signature-pad>
-						<div class="buttons">
-							<button ng-click="clear()">Clear</button>
-							<button ng-click="dataurl = signature.dataUrl"
-								ng-disabled="!signature">Reset</button>
-							<button ng-click="signature = accept()">Sign</button>
-							<button ng-click="check()">Check</button>
+					<!-------------------------------------------------------------- Signature Component ------------------------------------------------------->
+					<div class=" nav nav-tabs tab-pane fade" id="2b" role="tabpanel">
+						<!-- Signature Component -->
+						<div class="container">
+							<signature-pad accept="accept" clear="clear" height="220"
+								width="568" dataurl="dataurl"></signature-pad>
+							<div class="buttons">
+								<button ng-click="clear()">Clear</button>
+								<button ng-click="dataurl = signature.dataUrl"
+									ng-disabled="!signature">Reset</button>
+								<button ng-click="signature = accept()">Sign</button>
+								<button ng-click="check()">Check</button>
+							</div>
+						</div>
+						<div class="result" ng-show="signature">
+							<img ng-src="{{ signature.dataUrl }}">
 						</div>
 					</div>
-					<div class="result" ng-show="signature">
-						<img ng-src="{{ signature.dataUrl }}">
+
+
+					<!-------------------------------------------------------------- UI-Grid Component ------------------------------------------------------->
+					<div class=" nav nav-tabs tab-pane fade" id="3b" role="tabpanel">
+
+						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
+							ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter
+							class="grid"></div>
+						<button ng-click="hideColumns()">Hide Colum First Name</button>
+						<button ng-click="showColumns()">Show Colum First Name</button>
+						<button ng-click="disableFirstName()">Disable First Name</button>
+					</div>
+
+					<!--------------------------------------------------------------Gally Sample Component ------------------------------------------------------->
+					<div class="nav nav-tabs tab-pane fade active" id="4b"
+						role="tabpanel">
+						<div class="my-drawing"></div>
+						<button ng-click="reply_click()">Get Gally Data</button>
 					</div>
 				</div>
-
-
-				<!-------------------------------------------------------------- UI-Grid Component ------------------------------------------------------->
-				<div class="tab-pane" id="3b">
-					<button ng-click="hideColumns()">Hide Colum First Name</button>
-					<button ng-click="showColumns()">Show Colum First Name</button>
-					<button ng-click="disableFirstName()">Disable First Name</button>
-					<br /> <br />
-					<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
-						ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter
-						class="grid"></div>
-				</div>
-
-				<!--------------------------------------------------------------Gally Sample Component ------------------------------------------------------->
-				<div class="tab-pane active" id="4b">
-					<div class="my-drawing"></div>
-					<button ng-click="reply_click()">Get Gally Data</button>
-				</div>
 			</div>
+
 		</div>
 	</div>
 </body>

@@ -20,11 +20,11 @@ function ChatController($scope, $http, atmosphereService, notify) {
 							.getItem($scope.localStorageKey)));
 				}
 				lc.on('drawingChange', function() {
-					alert("changed")
+					//alert("changed")
 					localStorage.setItem($scope.localStorageKey, JSON.stringify(lc
 							.getSnapshot()));
 				});
-				alert("Executed")
+				//alert("Executed")
 				
 			});
 
@@ -534,7 +534,7 @@ function ChatController($scope, $http, atmosphereService, notify) {
 
 			if (message.name != undefined) {
 				notify({
-					message : message.name + " got Re-sceduled",
+					message : message.name + " got Re-scheduled",
 					classes : "alert-info",
 					templateUrl : "",
 					position : "right",

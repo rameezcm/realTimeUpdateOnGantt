@@ -69,5 +69,9 @@ html, body {
 }
 
 .my-drawing {
-  height: 500px;
+  height: 416px;
+}
+
+.nav-tabs {
+	    margin-bottom: 0px !important;
 }
