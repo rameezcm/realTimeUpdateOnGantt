@@ -30,10 +30,10 @@
 <script type='text/javascript'
 	src="http://rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
 
+<!-- <link rel="stylesheet" type="text/css"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" type="text/css"
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/chat.css" />
 
 <script type='text/javascript'
@@ -47,8 +47,8 @@
 <script src="javascript/atmosphere.js"></script>
 <script src="javascript/angular-atmosphere-service.js"></script>
 <script src="javascript/application.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet"> -->
 <link rel="stylesheet"
 	href="https://cgross.github.io/angular-notify/dist/angular-notify.css">
 <script type='text/javascript'
@@ -58,7 +58,7 @@
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script> -->
 <script
-	src="https://rawgit.com/legalthings/angular-signature/master/src/signature.js"></script>
+	src="javascript/signature/signature.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
@@ -68,50 +68,86 @@
 <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
 <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
 <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/react@15.2.1/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15.2.1/dist/react-dom.js"></script>
+<script src="https://ololoepepe.me/files/literallycanvas.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://ololoepepe.me/files/literallycanvas.css">
+
+
+
 
 </head>
 
 <body onbeforeunload="ConfirmClose()" onunload="HandleOnClose()">
 	<div data-ng-app="ganttUpdate"
 		data-ng-controller="angularGanttCtrl as m">
-		<div gantt data="data" api="registerApi">
-			<gantt-movable enabled="disableEdit"></gantt-movable>
-		</div>
-		<!-- <em>{{updateData()}}</em> -->
-		<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
-		<button ng-click="save()" ng-disabled="disableSave">Save</button>
+		<div id="exTab3">
+			<ul class="nav nav-pills">
+				<li ><a href="#1b" data-toggle="tab">Gantt
+						Chart</a></li>
+				<li><a href="#2b" data-toggle="tab">Signature</a></li>
+				<li><a href="#3b" data-toggle="tab">Grid</a></li>
+				<li class="active"><a href="#4b" data-toggle="tab">Gally</a></li>
+			</ul>
 
-		<!-- Signature Component -->
-		<!-- <div class="container"
-			ng-style="{'max-width': boundingBox.width + 'px', 'max-height': boundingBox.height + 'px'}">
-			<signature-pad accept="accept" clear="clear" height="220" width="568"
-				dataurl="dataurl"></signature-pad>
+			<div class="tab-content clearfix">
+				<div class="tab-pane" id="1b">
+					<div gantt data="data" api="registerApi">
+						<gantt-movable enabled="disableEdit"></gantt-movable>
+					</div>
+					<!-- <em>{{updateData()}}</em> -->
+					<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
+					<button ng-click="save()" ng-disabled="disableSave">Save</button>
+				</div>
+				<div class="tab-pane" id="2b">
+					<!-- Signature Component -->
+					<div class="container">
+						<signature-pad accept="accept" clear="clear" height="220"
+							width="568" dataurl="dataurl"></signature-pad>
 
-			<div class="buttons">
-				<button ng-click="clear()">Clear</button>
-				<button ng-click="dataurl = signature.dataUrl"
-					ng-disabled="!signature">Reset</button>
-				<button ng-click="signature = accept()">Sign</button>
-				<button ng-click="check()">Check</button>
+						<div class="buttons">
+							<button ng-click="clear()">Clear</button>
+							<button ng-click="dataurl = signature.dataUrl"
+								ng-disabled="!signature">Reset</button>
+							<button ng-click="signature = accept()">Sign</button>
+							<button ng-click="check()">Check</button>
+						</div>
+
+					</div>
+
+					<div class="result" ng-show="signature">
+						<img ng-src="{{ signature.dataUrl }}">
+					</div>
+				</div>
+				<div class="tab-pane" id="3b">
+					<button ng-click="hideColumns()">Hide Colum First Name</button>
+					<button ng-click="showColumns()">Show Colum First Name</button>
+
+
+					<br /> <br />
+
+					<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
+						ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter
+						class="grid"></div>
+				</div>
+				<div class="tab-pane active" id="4b">
+					 <div class="my-drawing">
+					 <script>
+					
+					</script>
+					 
+					 </div>
+					 <button ng-click="reply_click()">Get Gally Data</button>
+					
+				</div>
 			</div>
-
 		</div>
-
-		<div class="result" ng-show="signature">
-			<img ng-src="{{ signature.dataUrl }}">
-		</div> -->
-
-		<button ng-click="hideColumns()">Hide Colum First Name</button>
-		<button ng-click="showColumns()">Show Colum First Name</button>
-
-
-		<br /> <br />
-
-		<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
-			ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter  class="grid"></div>
-
 	</div>
-
 </body>
 
 </html>
