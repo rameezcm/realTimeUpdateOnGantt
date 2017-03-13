@@ -32,8 +32,8 @@
 
 <!-- <link rel="stylesheet" type="text/css"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="css/chat.css" />
 
 <script type='text/javascript'
@@ -57,7 +57,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
 <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script> -->
-<script src="javascript/signature/signature.js"></script>
+<script src="https://rawgit.com/legalthings/angular-signature/master/src/signature.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
@@ -67,15 +67,33 @@
 <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
 <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
 <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+<!-- <script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <script src="https://unpkg.com/react@15.2.1/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@15.2.1/dist/react-dom.js"></script>
 <script src="https://ololoepepe.me/files/literallycanvas.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script> -->
+<!-- <script src="javascript/angular-ui-bootstrap-modal.js"></script> -->
 <link rel="stylesheet" type="text/css"
 	href="https://ololoepepe.me/files/literallycanvas.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <!-- <link rel="stylesheet" id="validate-engine-css-css"
 	href="https://mdbootstrap.com/wp-content/plugins/wysija-newsletters/css/validationEngine.jquery.css?ver=2.7.7"
 	type="text/css" media="all">
@@ -109,13 +127,32 @@
 <link rel="stylesheet" id="style.css-css"
 	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.7.3"
 	type="text/css" media="all"> -->
-<link rel="stylesheet" id="compiled.css-css"
+<!-- <link rel="stylesheet"
 	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.7.3"
-	type="text/css" media="all">
-<link rel="stylesheet" id="style.css-css"
+	type="text/css"> -->
+<!-- <link rel="stylesheet" 
 	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.7.3"
-	type="text/css" media="all">
+	type="text/css" > -->
+<style type="text/css">
+.bs-example {
+	margin: 20px;
+}
 
+@media screen and (min-width: 768px) {
+	.modal-dialog {
+		width: 700px; /* New width for default modal */
+	}
+	.modal-sm {
+		width: 350px; /* New width for small modal */
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.modal-lg {
+		width: 950px; /* New width for large modal */
+	}
+}
+</style>
 
 
 </head>
@@ -154,8 +191,10 @@
 					</div>
 
 					<!-------------------------------------------------------------- Signature Component ------------------------------------------------------->
+
 					<div class=" nav nav-tabs tab-pane fade" id="2b" role="tabpanel">
-						<!-- Signature Component -->
+						<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+						Signature Component
 						<div class="container">
 							<signature-pad accept="accept" clear="clear" height="220"
 								width="568" dataurl="dataurl"></signature-pad>
@@ -169,7 +208,70 @@
 						</div>
 						<div class="result" ng-show="signature">
 							<img ng-src="{{ signature.dataUrl }}">
+						</div> -->
+						<!-- <button ng-click='toggleModal()'>Open Modal Dialog</button>
+						<modal-dialog show='modalShown' width='750px' height='60%'>
+						<div class="container">
+							<signature-pad accept="accept" clear="clear" height="220"
+								width="568" dataurl="dataurl"></signature-pad>
+							<div class="buttons">
+								<button ng-click="clear()">Clear</button>
+								<button ng-click="dataurl = signature.dataUrl"
+									ng-disabled="!signature">Reset</button>
+								<button ng-click="signature = accept()">Sign</button>
+								<button ng-click="check()">Check</button>
+							</div>
+							<div class="result" ng-show="signature">
+							<img ng-src="{{ signature.dataUrl }}">
 						</div>
+						</div>
+
+						</modal-dialog> -->
+
+						<!-- Trigger the modal with a button -->
+						<!-- <input type="text" class="btn btn-info btn-lg" data-toggle="modal"
+							data-target="#myModal"></input> -->
+						<div class="signaturecontainer" data-toggle="modal"
+							data-target="#myModal">
+							<div class="result">
+								<img ng-src="{{ signature.dataUrl }}">
+							</div>
+						</div>
+						<!-- Modal -->
+						<div class="modal fade modal-wide" id="myModal" role="dialog">
+							<div class="modal-dialog modal-lg">
+
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Modal Header</h4>
+									</div>
+									<div class="modal-body">
+										<div class="signaturecontainer">
+											<signature-pad accept="accept" clear="clear" height="220"
+												width="600" dataurl="dataurl"></signature-pad>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal" ng-click="signature = accept()">Sign</button>
+										<button type="button" class="btn btn-default"ng-click="clear()">Clear</button>
+										<button type="button" class="btn btn-default"
+											ng-click="dataurl = signature.dataUrl"
+											ng-disabled="!signature">Reset</button>
+										<!-- <button type="button" class="btn btn-default"
+											ng-click="signature = accept()">Sign</button> -->
+										<!-- <button type="button" class="btn btn-default"
+											ng-click="check()">Check</button> -->
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+
 					</div>
 
 
@@ -178,10 +280,11 @@
 
 						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
 							ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter
-							class="grid"></div>
+							ui-grid-validate class="grid"></div>
 						<button ng-click="hideColumns()">Hide Colum First Name</button>
 						<button ng-click="showColumns()">Show Colum First Name</button>
 						<button ng-click="disableFirstName()">Disable First Name</button>
+						<button ng-click="enableValidation()">Enable Validation</button>
 					</div>
 
 					<!--------------------------------------------------------------Gally Sample Component ------------------------------------------------------->

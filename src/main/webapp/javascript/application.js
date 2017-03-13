@@ -1,11 +1,11 @@
 var app = angular.module("ganttUpdate", [ 'angular.atmosphere', 'gantt',
 		'gantt.table', 'gantt.movable', 'cgNotify', 'signature', 'ui.grid',
 		'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.moveColumns',
-		'ui.grid.resizeColumns', 'ui.grid.exporter' ]);
+		'ui.grid.resizeColumns', 'ui.grid.exporter' , 'ui.grid.validate' ]);
 
 app.controller('angularGanttCtrl', ChatController);
 
-function ChatController($scope, $http, atmosphereService, notify) {
+function ChatController($scope, $http, atmosphereService, notify ,$q, $interval ,uiGridValidateService ,$window ,$timeout) {
 	
 	/*******************************************************************Gally Sample Component****************************************************************/
 	angular.element(document).ready(
@@ -33,22 +33,39 @@ function ChatController($scope, $http, atmosphereService, notify) {
 	}
 	
 	/*******************************************************************UI-Grid Component****************************************************************/
+	var freshData = [] ;
+	  uiGridValidateService.setValidator('startWith',
+			    function(argument) {
+			      return function(oldValue, newValue, rowEntity, colDef) {
+			        if (!newValue) {
+			          return true; // We should not test for existence here
+			        } else {
+			          return newValue.startsWith(argument);
+			        }
+			      };
+			    },
+			    function(argument) {
+			      return 'You can only insert names starting with: "' + argument + '"';
+			    }
+			  );
+	
+	
 	$scope.nonEditableFields = [ "firstName" ];
 	$scope.data = [ {
-		"firstName" : "Cox",
-		"lastName" : "Carney",
+		"name" : "Cox",
+		"gender" : "Male",
 		"company" : "Enormo",
 		"employed" : true,
 		"isReadOnly" : true
 	}, {
-		"firstName" : "Lorraine",
-		"lastName" : "Wise",
+		"name" : "Lorraine",
+		"gender" : "Female",
 		"company" : "Comveyer",
 		"employed" : false,
 		"isReadOnly" : false
 	}, {
-		"firstName" : "Nancy",
-		"lastName" : "Waters",
+		"name" : "Nancy",
+		"gender" : "Male",
 		"company" : "Fuelton",
 		"employed" : false,
 		"isReadOnly" : false
@@ -104,8 +121,10 @@ function ChatController($scope, $http, atmosphereService, notify) {
 	    { field: 'company' }
 	  ],*/
 
-	/*columnDefs: [{
-	  name: 'firstName',
+	columnDefs: [{
+	  name: 'name',
+	  displayName : 'Person Name' ,
+	  validators: {required: true, startWith: 'M'}, cellTemplate: 'ui-grid/cellTitleValidator',
 	  cellEditableCondition: function($scope) {
 		if($scope.nonEditableFields.contains(firstName) > -1) {
 			return false ;
@@ -113,21 +132,53 @@ function ChatController($scope, $http, atmosphereService, notify) {
 	    return true;
 	  }
 	}, {
-	  name: 'lastName',
+	  name: 'gender',
+	  displayName : 'Person Sex' ,
+	  validators: {required: true, startWith: 'M'}, cellTemplate: 'ui-grid/cellTitleValidator',
 	  cellEditableCondition: function($scope) {
 	    return true;
-	  }
+	  },
+	  validators: {required: true, startWith: 'M'}, cellTemplate: 'ui-grid/cellTitleValidator'
 	}, {
 	  name: 'company',
+	  displayName : 'Person Company' ,
 	  cellEditableCondition: function($scope) {
 	    return true;
 	  }
-	}, ]*/
+	}, ]
 	};
 	//$scope.gridOptions.data = $scope.data ;
 	$scope.gridOptions.onRegisterApi = function(gridApi) {
 		$scope.gridApi = gridApi;
+		$scope.gridApi.edit.on.afterCellEdit($scope,$scope.saveRow)
+		/*gridApi.validate.on.validationFailed($scope,function(rowEntity, colDef, newValue, oldValue){
+            
+          });*/
 	};
+	
+	$scope.saveRow = function(rowEntity) {
+        var isValid = true;
+        $timeout(function() {
+        	for (var i = 0; i < $scope.gridOptions.columnDefs.length; i++) {
+                if ($scope.gridApi.validate.isInvalid(rowEntity, $scope.gridOptions.columnDefs[i]) !== undefined) {
+                  isValid = isValid && !$scope.gridApi.validate.isInvalid(rowEntity, $scope.gridOptions.columnDefs[i]);
+                }
+              }
+            if (isValid) {
+              alert("Trigger Server Call");
+              $http.get('http://ui-grid.info/data/100.json').success(function(data) {
+          		
+          		var newData = _.reject(data,function(num){ return num.name == rowEntity.name; });
+                newData.push(rowEntity);
+              $scope.gridOptions.data = _.sortBy(newData, '$$hashKey');
+          	});
+            } else {
+            	alert("Dont Trigger Server Call")              
+            }
+        }, 0);
+
+        
+      };
 
 	$scope.hideColumns = function() {
 		$scope.gridOptions.columnDefs[0].visible = false;
@@ -150,8 +201,20 @@ function ChatController($scope, $http, atmosphereService, notify) {
 		$scope.gridApi.grid.refresh();
 	}
 	
+	$scope.enableValidation = function() {
+		$scope.gridOptions.columnDefs[0].cellEditableCondition = function($scope) {
+		    return true;
+		 };
+		$scope.gridOptions.columnDefs[1].validators = {required: true, startWith: 'M'} ;
+		$scope.gridOptions.columnDefs[1].cellTemplate = 'ui-grid/cellTitleValidator' ;
+		$scope.gridApi.grid.refresh();
+	}
+	
+	
+	
 	$http.get('http://ui-grid.info/data/100.json').success(function(data) {
 		$scope.gridOptions.data = data;
+		freshData = data ;
 	});
 	
 	/*******************************************************************Signature Component****************************************************************/

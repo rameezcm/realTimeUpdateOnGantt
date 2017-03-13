@@ -19,39 +19,41 @@ html, body {
 	padding: 0;
 }
 
-.container {
+.signaturecontainer {
 	border: 1px solid red;
 	padding: 10px 10px 40px 10px;
 	position: relative;
 	margin: 0 auto 0 auto;
 	height: 100%;
+    width: 786px !important; 
+
 }
 
-.container .signature {
+.signaturecontainer .signature {
 	border: 1px solid orange;
 	margin: 0 auto;
 	cursor: pointer;
 }
 
-.container .signature canvas {
+.signaturecontainer .signature canvas {
 	border: 1px solid #999;
 	margin: 0 auto;
 	cursor: pointer;
 }
 
-.container .buttons {
+.signaturecontainer .buttons {
 	position: absolute;
 	bottom: 10px;
 	left: 10px;
 }
 
-.container .sizes {
+.signaturecontainer .sizes {
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
 }
 
-.container .sizes input {
+.signaturecontainer .sizes input {
 	width: 4em;
 	text-align: center;
 }
@@ -74,4 +76,12 @@ html, body {
 
 .nav-tabs {
 	    margin-bottom: 0px !important;
+}
+
+body .modal {
+  width: 90%; /* desired relative width */
+  left: 5%; /* (100%-width)/2 */
+  /* place center */
+  margin-left:auto;
+  margin-right:auto; 
 }
