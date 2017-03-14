@@ -227,7 +227,7 @@ function ChatController($scope, $http, atmosphereService, notify ,$q, $interval 
 	$scope.check = function() {
 		alert(signature.dataUrl);
 		var signature = $scope.accept();
-		//alert(signature);
+		alert(signature);
 	};
 	
 	

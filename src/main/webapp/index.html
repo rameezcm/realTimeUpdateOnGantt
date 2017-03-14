@@ -1,303 +1,172 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gantt</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gantt</title>
 
 
-<script type='text/javascript'
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="javascript/jquery.min.js"></script>
-<script type='text/javascript'
-	src="http://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
-<script type='text/javascript'
-	src="http://cdn.jsdelivr.net/angular.moment/latest/angular-moment.min.js"></script>
-<script type='text/javascript'
-	src="http://cdnjs.cloudflare.com/ajax/libs/moment-range/2.1.0/moment-range.min.js"></script>
+  <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="javascript/jquery.min.js"></script>
+  <script type='text/javascript' src="http://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+  <script type='text/javascript' src="http://cdn.jsdelivr.net/angular.moment/latest/angular-moment.min.js"></script>
+  <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/moment-range/2.1.0/moment-range.min.js"></script>
 
 
-<script type='text/javascript'
-	src="http://rawgit.com/JimLiu/angular-ui-tree/master/dist/angular-ui-tree.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="http://rawgit.com/angular-ui-tree/angular-ui-tree/master/dist/angular-ui-tree.min.css">
+  <script type='text/javascript' src="http://rawgit.com/JimLiu/angular-ui-tree/master/dist/angular-ui-tree.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://rawgit.com/angular-ui-tree/angular-ui-tree/master/dist/angular-ui-tree.min.css">
 
-<script type='text/javascript'
-	src="http://rawgit.com/ganarajpr/angular-dragdrop/master/draganddrop.js"></script>
+  <script type='text/javascript' src="http://rawgit.com/ganarajpr/angular-dragdrop/master/draganddrop.js"></script>
 
-<script type='text/javascript'
-	src="http://rawgit.com/marcj/css-element-queries/master/src/ElementQueries.js"></script>
-<script type='text/javascript'
-	src="http://rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
+  <script type='text/javascript' src="http://rawgit.com/marcj/css-element-queries/master/src/ElementQueries.js"></script>
+  <script type='text/javascript' src="http://rawgit.com/marcj/css-element-queries/master/src/ResizeSensor.js"></script>
+  <link rel="stylesheet" href="css/chat.css" />
 
-<!-- <link rel="stylesheet" type="text/css"
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
-<!-- <link rel="stylesheet" type="text/css"
-	href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
-<link rel="stylesheet" href="css/chat.css" />
+  <script type='text/javascript' src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.js"></script>
+  <script type='text/javascript' src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.css">
+  <script src="javascript/atmosphere.js"></script>
+  <script src="javascript/angular-atmosphere-service.js"></script>
+  <script src="javascript/application.js"></script>
+  <link rel="stylesheet" href="https://cgross.github.io/angular-notify/dist/angular-notify.css">
+  <script type='text/javascript' src="https://cgross.github.io/angular-notify/dist/angular-notify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+  <script src="javascript/signature/signature.js"></script>
 
-<script type='text/javascript'
-	src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.js"></script>
-<script type='text/javascript'
-	src="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt.min.css">
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/angular.gantt/1.2.11/angular-gantt-plugins.min.css">
-<script src="javascript/atmosphere.js"></script>
-<script src="javascript/angular-atmosphere-service.js"></script>
-<script src="javascript/application.js"></script>
-<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet"> -->
-<link rel="stylesheet"
-	href="https://cgross.github.io/angular-notify/dist/angular-notify.css">
-<script type='text/javascript'
-	src="https://cgross.github.io/angular-notify/dist/angular-notify.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script> -->
-<script src="https://rawgit.com/legalthings/angular-signature/master/src/signature.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
+  <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
-<script
-	src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
-
-<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
-<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
-<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-<!-- <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-<script src="https://unpkg.com/react@15.2.1/dist/react.js"></script>
-<script src="https://unpkg.com/react-dom@15.2.1/dist/react-dom.js"></script>
-<script src="https://ololoepepe.me/files/literallycanvas.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script> -->
-<!-- <script src="javascript/angular-ui-bootstrap-modal.js"></script> -->
-<link rel="stylesheet" type="text/css"
-	href="https://ololoepepe.me/files/literallycanvas.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<!-- <link rel="stylesheet" id="validate-engine-css-css"
-	href="https://mdbootstrap.com/wp-content/plugins/wysija-newsletters/css/validationEngine.jquery.css?ver=2.7.7"
-	type="text/css" media="all">
-<link rel="stylesheet" id="ajax-auth-style-css"
-	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/ajax-auth-style.css?ver=4.7.3"
-	type="text/css" media="all">
-<link rel="stylesheet" id="brandflow-wp-css"
-	href="https://mdbootstrap.com/wp-content/plugins/brandflow-wp/public/css/brandflow-wp-public.css?ver=1.0.0"
-	type="text/css" media="all">
-<link rel="stylesheet" id="contact-form-7-css"
-	href="https://mdbootstrap.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.6.1"
-	type="text/css" media="all">
-<link rel="stylesheet" id="cookie-consent-style-css"
-	href="https://mdbootstrap.com/wp-content/plugins/uk-cookie-consent/assets/css/style.css?ver=4.7.3"
-	type="text/css" media="all">
-<link rel="stylesheet" id="woocommerce-layout-css"
-	href="https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=2.6.9"
-	type="text/css" media="all">
-<link rel="stylesheet" id="woocommerce-smallscreen-css"
-	href="https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=2.6.9"
-	type="text/css" media="only screen and (max-width: 768px)">
-<link rel="stylesheet" id="woocommerce-general-css"
-	href="https://mdbootstrap.com/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=2.6.9"
-	type="text/css" media="all">
-<link rel="stylesheet" id="wsl-widget-css"
-	href="https://mdbootstrap.com/wp-content/plugins/wordpress-social-login/assets/css/style.css?ver=4.7.3"
-	type="text/css" media="all">
-<link rel="stylesheet" id="compiled.css-css"
-	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.7.3"
-	type="text/css" media="all">
-<link rel="stylesheet" id="style.css-css"
-	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.7.3"
-	type="text/css" media="all"> -->
-<!-- <link rel="stylesheet"
+  <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+  <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+  <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+  <script src="https://unpkg.com/react@15.2.1/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.2.1/dist/react-dom.js"></script>
+  <script src="https://ololoepepe.me/files/literallycanvas.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://ololoepepe.me/files/literallycanvas.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- <link rel="stylesheet"
 	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.7.3"
 	type="text/css"> -->
-<!-- <link rel="stylesheet" 
-	href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/style.css?ver=4.7.3"
-	type="text/css" > -->
-<style type="text/css">
-.bs-example {
-	margin: 20px;
-}
-
-@media screen and (min-width: 768px) {
-	.modal-dialog {
-		width: 700px; /* New width for default modal */
-	}
-	.modal-sm {
-		width: 350px; /* New width for small modal */
-	}
-}
-
-@media screen and (min-width: 992px) {
-	.modal-lg {
-		width: 950px; /* New width for large modal */
-	}
-}
-</style>
+  <style type="text/css">
+    .bs-example {
+      margin: 20px;
+    }
+    
+    @media screen and (min-width: 768px) {
+      .modal-dialog {
+        width: 700px;
+        /* New width for default modal */
+      }
+      .modal-sm {
+        width: 350px;
+        /* New width for small modal */
+      }
+    }
+    
+    @media screen and (min-width: 992px) {
+      .modal-lg {
+        width: 950px;
+        /* New width for large modal */
+      }
+    }
+  </style>
 
 
 </head>
 
 <body onbeforeunload="ConfirmClose()" onunload="HandleOnClose()">
-	<div data-ng-app="ganttUpdate"
-		data-ng-controller="angularGanttCtrl as m">
-		<div id="exTab3">
-			<div class="tabs-wrapper">
-				<ul class="nav nav-tabs tabs-3 indigo" role="tablist">
-					<li class="nav-item"><a href="#4b"
-						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+  <div data-ng-app="ganttUpdate" data-ng-controller="angularGanttCtrl as m">
+    <div id="exTab3">
+      <div class="tabs-wrapper">
+        <ul class="nav nav-tabs tabs-3 indigo" role="tablist">
+          <li class="nav-item"><a href="#4b" class="nav-link waves-light" data-toggle="tab" role="tab"><span
 							class="glyphicon glyphicon-th-list"></span> Galley</a></li>
-					<li class="nav-item"><a href="#1b"
-						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+          <li class="nav-item"><a href="#1b" class="nav-link waves-light" data-toggle="tab" role="tab"><span
 							class="glyphicon glyphicon-plane"></span> Gantt Chart</a></li>
-					<li class="nav-item"><a href="#2b"
-						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+          <li class="nav-item"><a href="#2b" class="nav-link waves-light" data-toggle="tab" role="tab"><span
 							class="glyphicon glyphicon-pencil"></span> Signature</a></li>
-					<li class="nav-item"><a href="#3b"
-						class="nav-link waves-light" data-toggle="tab" role="tab"><span
+          <li class="nav-item"><a href="#3b" class="nav-link waves-light" data-toggle="tab" role="tab"><span
 							class="glyphicon glyphicon-th"></span> Grid</a></li>
-				</ul>
+        </ul>
 
 
-				<div class="tab-content card">
+        <div class="tab-content card">
 
-					<!------------------------------------------------------------ Gantt Component ---------------------------------------------------------------->
-					<div class=" nav nav-tabs tab-pane fade" id="1b" role="tabpanel">
-						<div gantt data="data" api="registerApi">
-							<gantt-movable enabled="disableEdit"></gantt-movable>
-						</div>
-						<!-- <em>{{updateData()}}</em> -->
-						<button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
-						<button ng-click="save()" ng-disabled="disableSave">Save</button>
-					</div>
+          <!------------------------------------------------------------ Gantt Component ---------------------------------------------------------------->
+          <div class=" nav nav-tabs tab-pane fade" id="1b" role="tabpanel">
+            <div gantt data="data" api="registerApi">
+              <gantt-movable enabled="disableEdit"></gantt-movable>
+            </div>
+            <!-- <em>{{updateData()}}</em> -->
+            <button ng-click="edit()" ng-disabled="disableEdit">Edit</button>
+            <button ng-click="save()" ng-disabled="disableSave">Save</button>
+          </div>
 
-					<!-------------------------------------------------------------- Signature Component ------------------------------------------------------->
+          <!-------------------------------------------------------------- Signature Component ------------------------------------------------------->
 
-					<div class=" nav nav-tabs tab-pane fade" id="2b" role="tabpanel">
-						<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-						Signature Component
-						<div class="container">
-							<signature-pad accept="accept" clear="clear" height="220"
-								width="568" dataurl="dataurl"></signature-pad>
-							<div class="buttons">
-								<button ng-click="clear()">Clear</button>
-								<button ng-click="dataurl = signature.dataUrl"
-									ng-disabled="!signature">Reset</button>
-								<button ng-click="signature = accept()">Sign</button>
-								<button ng-click="check()">Check</button>
-							</div>
-						</div>
-						<div class="result" ng-show="signature">
-							<img ng-src="{{ signature.dataUrl }}">
-						</div> -->
-						<!-- <button ng-click='toggleModal()'>Open Modal Dialog</button>
-						<modal-dialog show='modalShown' width='750px' height='60%'>
-						<div class="container">
-							<signature-pad accept="accept" clear="clear" height="220"
-								width="568" dataurl="dataurl"></signature-pad>
-							<div class="buttons">
-								<button ng-click="clear()">Clear</button>
-								<button ng-click="dataurl = signature.dataUrl"
-									ng-disabled="!signature">Reset</button>
-								<button ng-click="signature = accept()">Sign</button>
-								<button ng-click="check()">Check</button>
-							</div>
-							<div class="result" ng-show="signature">
-							<img ng-src="{{ signature.dataUrl }}">
-						</div>
-						</div>
+          <div class=" nav nav-tabs tab-pane fade" id="2b" role="tabpanel">
 
-						</modal-dialog> -->
+            <div class="signaturecontainer" data-toggle="modal" data-target="#myModal">
+              <div class="result">
+                <img ng-src="{{ signature.dataUrl }}">
+              </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade modal-wide" id="myModal" role="dialog">
+              <div class="modal-dialog modal-lg">
 
-						<!-- Trigger the modal with a button -->
-						<!-- <input type="text" class="btn btn-info btn-lg" data-toggle="modal"
-							data-target="#myModal"></input> -->
-						<div class="signaturecontainer" data-toggle="modal"
-							data-target="#myModal">
-							<div class="result">
-								<img ng-src="{{ signature.dataUrl }}">
-							</div>
-						</div>
-						<!-- Modal -->
-						<div class="modal fade modal-wide" id="myModal" role="dialog">
-							<div class="modal-dialog modal-lg">
-
-								<!-- Modal content-->
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Modal Header</h4>
-									</div>
-									<div class="modal-body">
-										<div class="signaturecontainer">
-											<signature-pad accept="accept" clear="clear" height="220"
-												width="600" dataurl="dataurl"></signature-pad>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal" ng-click="signature = accept()">Sign</button>
-										<button type="button" class="btn btn-default"ng-click="clear()">Clear</button>
-										<button type="button" class="btn btn-default"
-											ng-click="dataurl = signature.dataUrl"
-											ng-disabled="!signature">Reset</button>
-										<!-- <button type="button" class="btn btn-default"
-											ng-click="signature = accept()">Sign</button> -->
-										<!-- <button type="button" class="btn btn-default"
-											ng-click="check()">Check</button> -->
-									</div>
-								</div>
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="signaturecontainer">
+                      <signature-pad accept="accept" clear="clear" height="220" width="600" dataurl="dataurl"></signature-pad>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="signature = accept()">Sign</button>
+                    <button type="button" class="btn btn-default" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-default" ng-click="dataurl = signature.dataUrl" ng-disabled="!signature">Reset</button>
+                  </div>
+                </div>
 
 
-							</div>
+              </div>
 
-						</div>
+            </div>
 
-					</div>
+          </div>
 
 
-					<!-------------------------------------------------------------- UI-Grid Component ------------------------------------------------------->
-					<div class=" nav nav-tabs tab-pane fade" id="3b" role="tabpanel">
+          <!-------------------------------------------------------------- UI-Grid Component ------------------------------------------------------->
+          <div class=" nav nav-tabs tab-pane fade" id="3b" role="tabpanel">
 
-						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav
-							ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter
-							ui-grid-validate class="grid"></div>
-						<button ng-click="hideColumns()">Hide Colum First Name</button>
-						<button ng-click="showColumns()">Show Colum First Name</button>
-						<button ng-click="disableFirstName()">Disable First Name</button>
-						<button ng-click="enableValidation()">Enable Validation</button>
-					</div>
+            <div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter ui-grid-validate class="grid"></div>
+            <button ng-click="hideColumns()">Hide Colum First Name</button>
+            <button ng-click="showColumns()">Show Colum First Name</button>
+            <button ng-click="disableFirstName()">Disable First Name</button>
+            <button ng-click="enableValidation()">Enable Validation</button>
+          </div>
 
-					<!--------------------------------------------------------------Gally Sample Component ------------------------------------------------------->
-					<div class="nav nav-tabs tab-pane fade active" id="4b"
-						role="tabpanel">
-						<div class="my-drawing"></div>
-						<button ng-click="reply_click()">Get Gally Data</button>
-					</div>
-				</div>
-			</div>
+          <!--------------------------------------------------------------Gally Sample Component ------------------------------------------------------->
+          <div class="nav nav-tabs tab-pane fade active" id="4b" role="tabpanel">
+            <div class="my-drawing"></div>
+            <button ng-click="reply_click()">Get Gally Data</button>
+          </div>
+        </div>
+      </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </body>
 
 </html>
